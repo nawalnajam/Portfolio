@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nawal Najam — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f1117; --bg-2:#171a23; --bg-3:#1f2330;
+  --text:#f2f3f7; --text-dim:rgba(242,243,247,0.65);
+  --line:rgba(242,243,247,0.12);
+  --accent:#5eead4; --accent-2:#818cf8;
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;line-height:1.6;}
+h1,h2,h3{font-family:'Sora',sans-serif;font-weight:600;line-height:1.15;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+.section-inner,.nav-inner{max-width:1140px;margin:0 auto;padding:0 32px;}
+.eyebrow{font-size:.85rem;color:var(--accent);letter-spacing:.04em;text-transform:uppercase;margin-bottom:12px;}
+
+/* ===== NAVBAR ===== */
+.navbar{position:sticky;top:0;z-index:100;background:rgba(15,17,23,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding-top:16px;padding-bottom:16px;}
+
+/* ===== ANIMATED LOGO ===== */
+.logo{
+  font-family:'Sora',sans-serif;
+  font-size:1.1rem;
+  font-weight:700;
+  display:inline-flex;
+  align-items:center;
+  gap:2px;
+}
+.logo .word{
+  display:inline-flex;
+}
+.logo .word span{
+  display:inline-block;
+  opacity:0;
+  transform:translateY(-10px);
+  animation:letterDrop .38s ease forwards;
+}
+.logo .word:not(.accent-word) span:nth-child(1){animation-delay:.10s;}
+.logo .word:not(.accent-word) span:nth-child(2){animation-delay:.20s;}
+.logo .word:not(.accent-word) span:nth-child(3){animation-delay:.30s;}
+.logo .word:not(.accent-word) span:nth-child(4){animation-delay:.40s;}
+.logo .word:not(.accent-word) span:nth-child(5){animation-delay:.50s;}
+.logo .accent-word span{color:var(--accent);}
+.logo .accent-word span:nth-child(1){animation-delay:.75s;}
+.logo .accent-word span:nth-child(2){animation-delay:.85s;}
+.logo .accent-word span:nth-child(3){animation-delay:.95s;}
+.logo .accent-word span:nth-child(4){animation-delay:1.05s;}
+.logo .accent-word span:nth-child(5){animation-delay:1.15s;}
+
+@keyframes letterDrop{
+  0%   { opacity:0; transform:translateY(-12px) scale(.75); }
+  60%  { opacity:1; transform:translateY(3px) scale(1.08); }
+  100% { opacity:1; transform:translateY(0) scale(1); }
+}
+.logo:hover .word span{
+  text-shadow:0 0 12px rgba(94,234,212,.7);
+  transition:text-shadow .3s ease;
+}
+
+.nav-links{display:flex;gap:32px;}
+.nav-links a{font-size:.95rem;color:var(--text-dim);transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-right{display:flex;align-items:center;gap:16px;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:100px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:transform .2s,box-shadow .2s;}
+.btn-download{background:linear-gradient(100deg,var(--accent),var(--accent-2));color:#0f1117;}
+.btn-download:hover{transform:translateY(-2px);box-shadow:0 10px 26px -10px rgba(94,234,212,.5);}
+.btn-primary{background:linear-gradient(100deg,var(--accent),var(--accent-2));color:#0f1117;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 26px -10px rgba(94,234,212,.5);}
+.btn-ghost{border:1px solid var(--line);color:var(--text);background:transparent;}
+.btn-ghost:hover{border-color:var(--accent);}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hamburger span{width:24px;height:2px;background:var(--text);display:block;transition:all .3s;}
+.mobile-panel{display:none;flex-direction:column;padding:8px 32px 22px;border-top:1px solid var(--line);}
+.mobile-panel a{padding:13px 0;font-size:1rem;color:var(--text-dim);border-bottom:1px solid var(--line);}
+.mobile-panel.show{display:flex;}
+.mobile-download{margin-top:14px;text-align:center;background:linear-gradient(100deg,var(--accent),var(--accent-2));color:#0f1117!important;border-radius:100px;border-bottom:none!important;font-weight:600;}
+@media (max-width:820px){.nav-links{display:none;}.hamburger{display:flex;}.btn-download{padding:9px 16px;font-size:.85rem;}}
+
+/* ===== HERO ===== */
+.hero{min-height:auto;padding:90px 32px 70px;max-width:900px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:36px;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(94,234,212,.08),transparent 70%);}
+.hero-text h1{font-size:clamp(2rem,4.4vw,3rem);margin-bottom:16px;}
+
+/* ⭐ ANIMATED HERO NAME */
+.hero-text .accent{
+  display:inline-block;
+  background:linear-gradient(100deg,var(--accent),var(--accent-2),var(--accent),var(--accent-2));
+  background-size:300% auto;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:heroShimmer 4s linear infinite, heroFloat 3s ease-in-out infinite;
+}
+
+@keyframes heroShimmer{
+  0%   { background-position:0% center; }
+  100% { background-position:300% center; }
+}
+
+@keyframes heroFloat{
+  0%,100% { transform:translateY(0); filter:drop-shadow(0 0 0 rgba(94,234,212,0)); }
+  50%     { transform:translateY(-4px); filter:drop-shadow(0 0 18px rgba(94,234,212,.55)); }
+}
+
+.hero-text .lede{color:var(--text-dim);font-size:1.05rem;max-width:56ch;margin:0 auto;}
+.video-wrap{position:relative;width:100%;max-width:820px;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;background:var(--bg-2);border:1px solid var(--line);box-shadow:0 30px 70px -30px rgba(0,0,0,.6);}
+.video-wrap video{width:100%;height:100%;display:block;object-fit:cover;background:#000;}
+.video-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:linear-gradient(160deg,var(--bg-3),var(--bg-2));pointer-events:none;text-align:center;padding:20px;}
+.video-placeholder .play-icon{width:56px;height:56px;border-radius:50%;background:linear-gradient(100deg,var(--accent),var(--accent-2));color:#0f1117;display:flex;align-items:center;justify-content:center;margin-bottom:6px;}
+.video-placeholder .hint{font-size:.82rem;color:var(--text-dim);line-height:1.5;}
+.video-placeholder code{background:rgba(255,255,255,.08);padding:1px 6px;border-radius:4px;font-size:.8rem;}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
+
+/* ===== SECTIONS ===== */
+section{padding:90px 0;border-bottom:1px solid var(--line);}
+.section-title{font-size:clamp(1.8rem,3.6vw,2.4rem);margin-bottom:44px;}
+footer{text-align:center;padding:26px;color:var(--text-dim);font-size:.85rem;}
+.nav-links a.active,.mobile-panel a.active{color:var(--accent);}
+
+/* ===== "WHAT I DO" CARDS ===== */
+.do-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.do-card{
+  background:var(--bg-2);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:28px 24px;
+  transition:transform .25s ease, border-color .25s ease;
+}
+.do-card:hover{transform:translateY(-5px);border-color:rgba(94,234,212,.4);}
+.do-icon{
+  width:46px;height:46px;
+  border-radius:12px;
+  background:linear-gradient(100deg, rgba(94,234,212,.18), rgba(129,140,248,.18));
+  border:1px solid rgba(94,234,212,.3);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--accent);
+  margin-bottom:16px;
+}
+.do-card h3{font-size:1.1rem;margin-bottom:8px;}
+.do-card p{color:var(--text-dim);font-size:.92rem;}
+
+/* ===== CTA SECTION ===== */
+.cta-section{
+  padding:80px 0;
+  background:
+    radial-gradient(ellipse 60% 60% at 50% 100%, rgba(129,140,248,.12), transparent 70%);
+  border-bottom:none;
+}
+.cta-inner{
+  max-width:760px;
+  margin:0 auto;
+  text-align:center;
+  padding:0 32px;
+}
+.cta-inner h2{
+  font-size:clamp(1.8rem,4vw,2.6rem);
+  margin-bottom:14px;
+}
+.cta-inner p{
+  color:var(--text-dim);
+  max-width:52ch;
+  margin:0 auto 28px;
+}
+.cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+@media (max-width:900px){
+  section{padding:70px 0;}
+  .do-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:760px){
+  .section-inner,.nav-inner{padding:0 20px;}
+  .nav-inner{padding-top:14px;padding-bottom:14px;}
+  .logo{font-size:1rem;}
+  section{padding:56px 0;}
+  .hero{padding:56px 20px 44px;gap:24px;}
+  .hero-text .lede{font-size:.98rem;}
+  .hero-actions{width:100%;}
+  .hero-actions .btn{flex:1;text-align:center;justify-content:center;}
+  .do-grid{grid-template-columns:1fr;}
+  .cta-inner{padding:0 20px;}
+}
+@media (max-width:480px){
+  .section-inner,.nav-inner{padding:0 16px;}
+  .mobile-panel{padding:8px 16px 20px;}
+  .btn-download{padding:8px 14px;font-size:.8rem;}
+  .btn-download svg{width:14px;height:14px;}
+  .video-placeholder .play-icon{width:44px;height:44px;}
+  .video-placeholder .hint{font-size:.76rem;}
+}
+</style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="nav-inner">
+    <!-- ⭐ ANIMATED LOGO -->
+    <a href="index.html" class="logo" aria-label="Nawal Najam">
+      <span class="word">
+        <span>N</span><span>a</span><span>w</span><span>a</span><span>l</span>
+      </span>
+      <span class="word accent-word">
+        <span>N</span><span>a</span><span>j</span><span>a</span><span>m</span>
+      </span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="index.html" data-page="index">Home</a>
+      <a href="about.html" data-page="about">About</a>
+      <a href="projects.html" data-page="projects">Projects</a>
+      <a href="contact.html" data-page="contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <a href="assests/Nawal Najam Cv(1).pdf" download="NawalNajamCV.pdf" class="btn btn-download">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Download CV
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="index.html" data-page="index">Home</a>
+    <a href="about.html" data-page="about">About</a>
+    <a href="projects.html" data-page="projects">Projects</a>
+    <a href="contact.html" data-page="contact">Contact</a>
+    <a href="assests/Nawal Najam Cv(1).pdf" download="NawalNajamCV.pdf" class="mobile-download">Download CV</a>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="eyebrow">Final Year Project</div>
+    <h1>Hi, I'm <span class="accent">Nawal Najam</span>.<br>Here's what I built.</h1>
+    <p class="lede">A quick look at my Final Year Project in action — check out the Projects page for the full write-up.</p>
+  </div>
+  <div class="video-wrap">
+    <video id="fypVideo" controls preload="metadata" poster="assests/banner new.png">
+      <source src="assests/project-video.mp4" type="video/mp4">
+    </video>
+    <div class="video-placeholder" id="videoPlaceholder" style="display:flex;">
+      <div class="play-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+      <p><strong>Add your FYP demo video</strong></p>
+      <p class="hint">Replace <code>assests/project-video.mp4</code> with your video file</p>
+    </div>
+  </div>
+  <div class="hero-actions">
+    <a href="projects.html" class="btn btn-primary">View Projects</a>
+    <a href="contact.html" class="btn btn-ghost">Contact Me</a>
+  </div>
+</section>
+
+<!-- ===== WHAT I DO ===== -->
+<section>
+  <div class="section-inner">
+    <div class="eyebrow">What I do</div>
+    <h2 class="section-title">Areas I love working in.</h2>
+
+    <div class="do-grid">
+      <div class="do-card">
+        <div class="do-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Full-Stack Development</h3>
+        <p>Building end-to-end web apps — from database design and REST APIs to polished, responsive interfaces.</p>
+      </div>
+
+      <div class="do-card">
+        <div class="do-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18M9 21V9" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>UI / UX Design</h3>
+        <p>Designing clean, accessible interfaces — wireframes, prototypes, and full design systems that ship.</p>
+      </div>
+
+      <div class="do-card">
+        <div class="do-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 8v4l3 2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Problem Solving</h3>
+        <p>Breaking down complex problems into clear, testable solutions — with a focus on real-world impact.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="eyebrow">Let's connect</div>
+    <h2>Got a project or role in mind?</h2>
+    <p>I'm currently open to graduate roles, internships, and freelance work. Let's talk about how I can help.</p>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+      <a href="about.html" class="btn btn-ghost">More About Me</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Nawal Najam. All rights reserved.</footer>
+<script src="js/script.js"></script>
+</body>
+</html>
